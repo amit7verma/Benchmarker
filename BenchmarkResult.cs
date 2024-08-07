@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace Benchmarker
@@ -6,18 +7,21 @@ namespace Benchmarker
     public class BenchmarkResult
     { 
         public long[] MilliSeconds { get; internal set; } = Array.Empty<long>();
-        public double Average { get; internal set; }
+        public long[] MemoryUsage { get; internal set; } = Array.Empty<long>();
 
         public override string ToString()
         {
             var sb = new StringBuilder();
-            var idx = 1;
-            foreach (var item in MilliSeconds)
+            for (var idx = 0; idx < MilliSeconds.Length; idx ++)
             {
-                sb.AppendLine($"Trial {idx}: {item} ms");
+                var ms = MilliSeconds[idx];
+                var mem = MemoryUsage[idx];
+                sb.AppendLine($"Trial {idx+1}: {ms} ms | {mem/1048576.0} mb");
                 idx++;
             }
-            sb.AppendLine($"Average: {Average} ms");
+            var avgMem = MemoryUsage.Average() / 1048576.0;
+            var avgMS = MilliSeconds.Average();
+            sb.AppendLine($"Average: {avgMS} ms | {avgMem} MB");
             return sb.ToString();
         }
 

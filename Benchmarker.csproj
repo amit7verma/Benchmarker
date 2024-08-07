@@ -3,6 +3,26 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Benchmarker</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>Amit Kumar</Authors>
+    <Authors>Amit Kumar</Authors>
+    <Company>Independent</Company>
+    <Product>Benchmarker</Product>
+    <Description>A simple and powerful benchmarking utility for .NET applications. This tool helps developers measure the execution time of functions and actions to optimize performance.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/amit7verma/Benchmarker/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/amit7verma/Benchmarker/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>true</Pack>
+      <PackagePath>README.md</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

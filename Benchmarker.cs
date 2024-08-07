@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace Benchmarker
 {
@@ -11,19 +10,39 @@ namespace Benchmarker
         {
             var stopWatch = new Stopwatch();
             var timesheet = new List<long>();
+            var memorySheet = new List<long>();
             for (var i = 0; i < attemptCount; i++)
-            { 
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+
+                long initialMemory = GC.GetTotalMemory(true);
+                
                 stopWatch.Restart();
-                _ = work();
+                var returnVal = work();
                 stopWatch.Stop();
+               
+                long endMemory = GC.GetTotalMemory(true);
+                memorySheet.Add(endMemory - initialMemory);
                 timesheet.Add(stopWatch.ElapsedMilliseconds);
+
+                if(returnVal is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+
                 stopWatch.Reset();
             }
 
             return new BenchmarkResult() 
             { 
                 MilliSeconds = timesheet.ToArray(),
-                Average = timesheet.Average()
+                MemoryUsage = memorySheet.ToArray()
             };
         }
 
@@ -31,19 +50,33 @@ namespace Benchmarker
         {
             var stopWatch = new Stopwatch();
             var timesheet = new List<long>();
+            var memorySheet = new List<long>();
+
             for (var i = 0; i < attemptCount; i++)
             {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                long initialMemory = GC.GetTotalMemory(true);
+
                 stopWatch.Restart();
                 work();
                 stopWatch.Stop();
+
+                long endMemory = GC.GetTotalMemory(true);
+                memorySheet.Add(endMemory - initialMemory);
+
                 timesheet.Add(stopWatch.ElapsedMilliseconds);
                 stopWatch.Reset();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
             }
 
             return new BenchmarkResult()
             {
                 MilliSeconds = timesheet.ToArray(),
-                Average = timesheet.Average()
+                MemoryUsage = memorySheet.ToArray()
             };
         }
     }

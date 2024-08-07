@@ -63,7 +63,7 @@ The `BenchmarkResult` class encapsulates the results of a benchmark run.
 ### Properties
 
 -   `long[] MilliSeconds`: An array of execution times for each attempt, in milliseconds.
--   `double Average`: The average execution time, in milliseconds.
+-   `long[] MemoryUsage`: An array of memory usage data for each attempt, in bytes.
 
 ### Methods
 
@@ -72,9 +72,9 @@ The `BenchmarkResult` class encapsulates the results of a benchmark run.
 ## Example Output
 
 ```plaintext
-Trial 1: 10 ms
-Trial 2: 9 ms
-Trial 3: 11 ms
+Trial 1: 10 ms | 20 mb
+Trial 2: 9 ms | 22 mb
+Trial 3: 11 ms | 25 mb
 ...
-Average: 10 ms
+Average: 10 ms | 22.5 mb
 ```
