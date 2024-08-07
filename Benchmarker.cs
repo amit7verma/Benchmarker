@@ -17,13 +17,13 @@ namespace Benchmarker
                 GC.WaitForPendingFinalizers();
                 GC.Collect();
 
-                long initialMemory = GC.GetTotalMemory(false);
+                long initialMemory = GetTotalMemory();
                 
                 stopWatch.Restart();
                 var returnVal = work();
                 stopWatch.Stop();
                
-                long endMemory = GC.GetTotalMemory(false);
+                long endMemory = GetTotalMemory();
                 memorySheet.Add(endMemory - initialMemory);
                 timesheet.Add(stopWatch.ElapsedMilliseconds);
 
@@ -57,13 +57,13 @@ namespace Benchmarker
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 GC.Collect();
-                long initialMemory = GC.GetTotalMemory(true);
+                long initialMemory = GetTotalMemory();
 
                 stopWatch.Restart();
                 work();
                 stopWatch.Stop();
 
-                long endMemory = GC.GetTotalMemory(true);
+                long endMemory = GetTotalMemory();
                 memorySheet.Add(endMemory - initialMemory);
 
                 timesheet.Add(stopWatch.ElapsedMilliseconds);
@@ -78,6 +78,14 @@ namespace Benchmarker
                 MilliSeconds = timesheet.ToArray(),
                 MemoryUsage = memorySheet.ToArray()
             };
+        }
+
+        private static long GetTotalMemory()
+        {
+            using (var  process = Process.GetCurrentProcess())
+            {
+                return process.WorkingSet64;
+            }
         }
     }
 }
