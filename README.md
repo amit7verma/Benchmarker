@@ -10,7 +10,7 @@ The `Benchmarker` class provides a simple yet powerful utility for measuring the
 
 ## Usage
 
-The `Benchmarker` class includes two static methods, `CollectBenchmark`, which are used to benchmark functions and actions.
+The `Benchmarker` class includes two static methods, `CollectResult`, which are used to benchmark functions and actions.
 
 ### Benchmarking a Function
 
@@ -21,8 +21,9 @@ Func<int> work = () => {
     return 42;
 };
 
-RunResult result = Benchmarker.CollectBenchmark(attemptCount, work);
+BenchmarkResult result = Benchmarker.CollectResult(attemptCount, work);
 Console.WriteLine(result);
+```
 
 ### Benchmarking an Action
 
@@ -32,9 +33,48 @@ Action work = () => {
     // Your code here
 };
 
-RunResult result = Benchmarker.CollectBenchmark(attemptCount, work);
+BenchmarkResult result = Benchmarker.CollectResult(attemptCount, work);
 Console.WriteLine(result);
+```
+## Methods
 
+### `CollectResult<T>(int attemptCount, Func<T> work)`
 
+Benchmarks a function by running it the specified number of times.
 
+-   `attemptCount`: The number of times to run the function.
+-   `work`: The function to benchmark.
 
+Returns a `BenchmarkResult` object containing the timing data.
+
+### `CollectResult(int attemptCount, Action work)`
+
+Benchmarks an action by running it the specified number of times.
+
+-   `attemptCount`: The number of times to run the action.
+-   `work`: The action to benchmark.
+
+Returns a `BenchmarkResult` object containing the timing data.
+
+## BenchmarkResult Class
+
+The `BenchmarkResult` class encapsulates the results of a benchmark run.
+
+### Properties
+
+-   `long[] MilliSeconds`: An array of execution times for each attempt, in milliseconds.
+-   `double Average`: The average execution time, in milliseconds.
+
+### Methods
+
+-   `ToString()`: Returns a string representation of the benchmark results, including the execution time of each attempt and the average execution time.
+
+## Example Output
+
+```plaintext
+Trial 1: 10 ms
+Trial 2: 9 ms
+Trial 3: 11 ms
+...
+Average: 10 ms
+```
