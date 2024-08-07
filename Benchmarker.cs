@@ -17,13 +17,13 @@ namespace Benchmarker
                 GC.WaitForPendingFinalizers();
                 GC.Collect();
 
-                long initialMemory = GC.GetTotalMemory(true);
+                long initialMemory = GC.GetTotalMemory(false);
                 
                 stopWatch.Restart();
                 var returnVal = work();
                 stopWatch.Stop();
                
-                long endMemory = GC.GetTotalMemory(true);
+                long endMemory = GC.GetTotalMemory(false);
                 memorySheet.Add(endMemory - initialMemory);
                 timesheet.Add(stopWatch.ElapsedMilliseconds);
 
