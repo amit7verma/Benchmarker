@@ -72,3 +72,36 @@ The `BenchmarkResult` class encapsulates the results of a benchmark run.
 ### Methods
 
 -   `ToString(string memoryUnit = "KB")`: Returns a string representation of the benchmark results, including the execution time and memory usage of each attempt, with memory units specified as either "KB" or "MB".
+
+## Sample Output
+```
+## Summary
+|--------------------------------|----------------------|
+| Metric                         |                Value |
+|--------------------------------|----------------------|
+| Average Execution Time         |            548.30 ms |
+| Peak Working Memory Usage(Avg) |          46297.60 KB |
+| Peak Working Memory Usage(Max) |          47244.00 KB |
+| Peak Virtual Memory Usage(Avg) |         204772.00 KB |
+| Peak Virtual Memory Usage(Max) |         204772.00 KB |
+| Average Private Memory         |          10114.40 KB |
+| Average Working Memory         |          10154.80 KB |
+| Average Virtual Memory         |           3698.80 KB |
+|--------------------------------|----------------------|
+
+## Detailed Attempts
+|---------|---------------------|------------------------|------------------------|------------------------|----------------------------|----------------------------|
+| Attempt | Execution Time (ms) |    Private Memory (KB) |    Working Memory (KB) |    Virtual Memory (KB) |   Peak Virtual Memory (KB) |   Peak Working Memory (KB) |
+|---------|---------------------|------------------------|------------------------|------------------------|----------------------------|----------------------------|
+| 1       |                 837 |               19656.00 |               23292.00 |               36988.00 |                  204772.00 |                   41400.00 |
+| 2       |                 596 |               10052.00 |                9440.00 |                   0.00 |                  204772.00 |                   45288.00 |
+| 3       |                 473 |                7848.00 |                8516.00 |                   0.00 |                  204772.00 |                   46472.00 |
+| 4       |                 451 |                9964.00 |                9264.00 |                   0.00 |                  204772.00 |                   46472.00 |
+| 5       |                 515 |                7848.00 |                7772.00 |                   0.00 |                  204772.00 |                   47208.00 |
+| 6       |                 543 |                9964.00 |                9236.00 |                   0.00 |                  204772.00 |                   47208.00 |
+| 7       |                 590 |                7848.00 |                7776.00 |                   0.00 |                  204772.00 |                   47220.00 |
+| 8       |                 536 |               10028.00 |                9248.00 |                   0.00 |                  204772.00 |                   47220.00 |
+| 9       |                 484 |                7912.00 |                7776.00 |                   0.00 |                  204772.00 |                   47244.00 |
+| 10      |                 458 |               10024.00 |                9228.00 |                   0.00 |                  204772.00 |                   47244.00 |
+|---------|---------------------|------------------------|------------------------|------------------------|----------------------------|----------------------------|
+```
