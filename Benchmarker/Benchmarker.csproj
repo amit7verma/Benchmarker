@@ -5,8 +5,7 @@
     <LangVersion>7.3</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Benchmarker</PackageId>
-    <Version>1.0.3</Version>
-    <Authors>Amit Kumar</Authors>
+    <Version>1.0.4</Version>
     <Authors>Amit Kumar</Authors>
     <Company>Independent</Company>
     <Product>Benchmarker</Product>

@@ -63,18 +63,12 @@ The `BenchmarkResult` class encapsulates the results of a benchmark run.
 ### Properties
 
 -   `long[] MilliSeconds`: An array of execution times for each attempt, in milliseconds.
--   `long[] MemoryUsage`: An array of memory usage data for each attempt, in bytes.
+-   `long[] PrivateMemoryUsage`: An array of private memory usage data for each attempt, in bytes.
+-   `long[] WorkingMemoryUsage`: An array of working memory usage data for each attempt, in bytes.
+-   `long[] VirtualMemoryUsage`: An array of virtual memory usage data for each attempt, in bytes.
+-   `long[] PeakWorkingMemoryUsage`: An array of peak working memory usage for each attempt, in bytes.
+-   `long[] PeakVirtualMemoryUsage`: An array of peak virtual memory usage for each attempt, in bytes.
 
 ### Methods
 
--   `ToString()`: Returns a string representation of the benchmark results, including the execution time of each attempt and the average execution time.
-
-## Example Output
-
-```plaintext
-Trial 1: 10 ms | 20 mb
-Trial 2: 9 ms | 22 mb
-Trial 3: 11 ms | 25 mb
-...
-Average: 10 ms | 22.5 mb
-```
+-   `ToString(string memoryUnit = "KB")`: Returns a string representation of the benchmark results, including the execution time and memory usage of each attempt, with memory units specified as either "KB" or "MB".
