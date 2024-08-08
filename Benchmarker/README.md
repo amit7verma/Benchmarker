@@ -8,6 +8,15 @@ The `Benchmarker` class provides a simple yet powerful utility for measuring the
 - **Multiple Attempts**: Allows specifying the number of times to run the benchmark, providing more accurate and stable performance measurements.
 - **Detailed Results**: Collects and returns detailed timing information for each run, along with the average execution time.
 
+## Installation
+
+You can install the Benchmarker library via NuGet:
+
+```shell
+dotnet add package Benchmarker
+```
+
+
 ## Usage
 
 The `Benchmarker` class includes two static methods, `CollectResult`, which are used to benchmark functions and actions.
